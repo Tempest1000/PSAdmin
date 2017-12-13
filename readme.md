@@ -53,3 +53,51 @@ On the server need to route all requests to index.html so that react router can 
 
 Note: hash based URL's do not require any configuration on the server and can be used as is
 
+### Pages and Change Handlers
+
+If you just create a form text input on a page, then the input will not be registered to accept any changes from the keyboard.
+
+In order to accept input initial state must be defined for the properties that will be set on the form. 
+
+This is done by creating a JSON object representing the state in the view controller, and handing it down as props to the child form.
+
+The JSON looks like this:
+
+````
+    getInitialState: function() {
+        return {
+            author: { id: '', firstName: '', lastName: '' }
+        };
+    },
+````
+
+To pass this down to the form replace this:
+
+````
+    <AuthorPage/>
+````
+
+With this:
+
+````
+    <AuthorPage author={this.state.author} />
+````
+
+Then update the author form component ... this is done by entering the props in the value field of the form text inputs like this:
+
+````
+    value={this.props.author.firstName}
+````
+
+Once this is done, change handlers also need to be setup for the form. In the view controller create a setAuthorState function.
+
+````
+    setAuthorState: function(event) {
+        var field = event.target.name;
+        var value = event.target.value;
+        this.state.author[field] = value;
+        return this.setState({author: this.state.author});
+    },
+````
+
+Stopped at 3:15 of 6:56
