@@ -12,6 +12,22 @@
 
 ## Notes
 
+### React Order of Operations
+
+Lifecycle is similar to ASP.NET web forms … each component has a lifecycle
+
+getInitialState function … initial state load
+getDefaultProps … return a set a properties to use by default if parent doesn't have value
+
+componentWillMount - runs immediately before rendering … good spot to set initial state (client and server) - like clearing fields on a login screen
+componentDidMount - runs immediately after rendering … access DOM, integrate, set timers, AJAX 
+componentWillReceiveProps - runs when component receiving props (when properties have changed), not called on initial render … set state before render
+shouldComponentUpdate - before render when new props or state are being received … not called on initial render … performance, return false to void unnecessary renders (state changed, but don't want to render again)
+componentWillUpdate - before render when new props or state are being received … use to prepare for an update
+componentDidUpdate - after components updates are flushed to the DOM, not called for the initial render, works with the DOM after an update
+componentWillUnmount - Immediately before component removed from the DOM … use for cleanup
+
+
 ### Handling Transitions
 
 willTransitionTo - determines if a page will be transitioned to, ex: useful for check a user has been authenticated before they can get to a page
@@ -74,13 +90,13 @@ The JSON looks like this:
 To pass this down to the form replace this:
 
 ````
-    <AuthorPage/>
+    <AuthorForm/>
 ````
 
 With this:
 
 ````
-    <AuthorPage author={this.state.author} />
+    <AuthorForm author={this.state.author} />
 ````
 
 Then update the author form component ... this is done by entering the props in the value field of the form text inputs like this:
@@ -91,6 +107,10 @@ Then update the author form component ... this is done by entering the props in 
 
 Once this is done, change handlers also need to be setup for the form. In the view controller create a setAuthorState function.
 
+This takes the event that occurs (text entered in text box) ... in example below field is one of the text fields, and value is the key that was pressed.
+The setState function updates the state, which gets passed as props to the value of the child form.
+Function below called with every key press.
+
 ````
     setAuthorState: function(event) {
         var field = event.target.name;
@@ -98,6 +118,22 @@ Once this is done, change handlers also need to be setup for the form. In the vi
         this.state.author[field] = value;
         return this.setState({author: this.state.author});
     },
+````
+
+A reference to this component has to be passed down to the child component. 
+
+This is done here with an onChange handler:
+
+````
+    <AuthorForm author={this.state.author} onChange={this.setAuthorState} />
+````
+
+This is used in the child component here:
+
+````
+    ref="firstName"
+    onChange={this.props.onChange}
+    value={this.props.author.firstName} />
 ````
 
 Stopped at 3:15 of 6:56
