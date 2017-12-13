@@ -12,6 +12,24 @@
 
 ## Notes
 
+### Input Shell
+
+````
+"use strict";
+
+var React = require('react');
+
+var Input = React.createClass({
+    render: function() {
+        return (
+
+        );
+    }
+});
+
+module.exports = Input;
+````
+
 ### React Order of Operations
 
 Lifecycle is similar to ASP.NET web forms … each component has a lifecycle
@@ -136,4 +154,57 @@ This is used in the child component here:
     value={this.props.author.firstName} />
 ````
 
-Stopped at 3:15 of 6:56
+### Creating Reusable Inputs
+
+As the input for text can be very verbose we need a reusable React Component for text inputs.
+
+Under common create a text input component.
+
+Once the text input component has been created it can be used in the AuthorForm like this.
+
+Add a reference to the component
+
+````
+var Input = require('../common/textInput');
+````
+
+Then add the new streamlined version of the component:
+
+````
+<Input
+    name="firstName"
+    label="First Name"
+    value={this.props.author.firstName}
+    onChange={this.props.onChange}
+    error={this.props.errors.firstName} />
+````
+
+### Saving Data
+
+This is done with a function that takes one argument, event. This will be the event passed up from the child form.
+
+This function just takes the current state and saves it. Note that the state has been changed with every change on the form.
+
+The save event is triggered by the Save button on the form with fires an onSave event ... onClick={this.props.onSave}
+
+Likewise the view controller is listening for onSave with an onSave handler here:
+
+````
+    <AuthorForm 
+        author={this.state.author} 
+        onChange={this.setAuthorState}
+        onSave={this.saveAuthor}
+        />
+````
+
+### Programmatic Redirects with React Router
+
+To redirect the user to the list of authors after they click save author React Router can be used.
+
+This is done with the navigation mixin for React Router and this statement in the saveAuthor method:
+
+````
+this.transitionTo('authors');
+````
+
+Stopped at React Forms - Controlled Components x:xx of x:xx
