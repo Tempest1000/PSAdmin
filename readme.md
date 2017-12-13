@@ -207,4 +207,37 @@ This is done with the navigation mixin for React Router and this statement in th
 this.transitionTo('authors');
 ````
 
-Stopped at React Forms - Controlled Components x:xx of x:xx
+### Notifications
+
+Visual feedback of save confirm with toastr.
+
+Go back to the command line and use npm to add toastr
+
+````
+npm install --save toastr@2.1.0
+````
+
+Once this is installed some changes need to be added to the gulpfile
+
+Add the toastr css here to add it to the css bundle:
+
+````
+var config = {
+    port: 9005,
+    devBaseUrl: 'http://localhost',
+    paths: {
+        html: './src/*.html',
+        js: './src/**/*.js',
+        images: './src/images/*',
+        css: [
+            'node_modules/bootstrap/dist/css/bootstrap.min.css',
+            'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
+            'node_modules/toastr/toastr.css'
+        ],
+````
+
+Then in the manageAuthorPage reference the toastr library and then call it with toastr.success('Author saved.')
+
+### Validation
+
+Stopped at React Forms - Validation 0:00 of 6:38
