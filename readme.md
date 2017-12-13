@@ -240,4 +240,7 @@ Then in the manageAuthorPage reference the toastr library and then call it with 
 
 ### Validation
 
-Stopped at React Forms - Validation 0:00 of 6:38
+Like an author state with an author object was created and passed to the child component as props, the same thing is done with an errors object.
+This are also added to the AuthorForm's children, the inputs. 
+
+Stopped at React Forms - PropTypes 0:00 of 2:38
