@@ -162,7 +162,7 @@ Under common create a text input component.
 
 Once the text input component has been created it can be used in the AuthorForm like this.
 
-Add a reference to the component
+Add a reference to the component:
 
 ````
 var Input = require('../common/textInput');
@@ -217,7 +217,7 @@ Go back to the command line and use npm to add toastr
 npm install --save toastr@2.1.0
 ````
 
-Once this is installed some changes need to be added to the gulpfile
+Once this is installed some changes need to be added to the gulpfile.
 
 Add the toastr css here to add it to the css bundle:
 
@@ -242,5 +242,48 @@ Then in the manageAuthorPage reference the toastr library and then call it with 
 
 Like an author state with an author object was created and passed to the child component as props, the same thing is done with an errors object.
 This are also added to the AuthorForm's children, the inputs. 
+
+### PropTypes
+
+    author - it is required an author object is passed from the parent
+    errors - it is optional an errors object is passed from the parent
+    onSave/onChange - it is required an onSave and onChange function are passed from the parent
+
+### Transitions
+
+To prevent a user from navigating away from a page and losing data before they save the form, transistions can be used.
+
+To do this add a new statics function.
+
+````
+statics: {
+    willTransitionFrom: function(transition, component) {
+        if (component.state.dirty) {
+            
+        }
+    }
+}
+````
+
+Start tracking a state of dirty along with author and errors.
+
+````
+author: {},
+errors: {},
+dirty: false
+````
+
+Make a call to set state in the change handler setAuthorState and the saveAuthor function.
+
+### Editing Existing Data
+
+Define a route to handle editing authors in routes, note special path.
+
+<Route name="manageAuthor" path="author/:id" handler={require('./components/authors/manageAuthorPage')} />
+
+The best place to hydrate components is inside of componentWillMount, which is run immediatly before the page is rendered.
+Setting state in this function will not trigger the page to re-render. If called in componentDidMount the page would re-render.
+
+
 
 Stopped at React Forms - PropTypes 0:00 of 2:38
