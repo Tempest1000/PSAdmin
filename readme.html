@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="template.css" />
+</head>
+<body>
+    <div class="container">
+    <div class="row">
+            <div class="span12">
+            <h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>gulp - pipeline task runner
+<ul>
+<li>gulp-connect - runs a local dev server</li>
+<li>gulp-open - opens a URL in a web browser</li>
+<li>gulp-concat - concatenates files</li>
+<li>gulp-eslint - lint js files, included in jsx</li>
+</ul></li>
+<li>browserify - packages files</li>
+<li>reactify - compiles jsx into js</li>
+<li>vinyl-source-stream - use conventional text streams with gulp</li>
+</ul>
+<h2 id="notes">Notes</h2>
+<h3 id="input-shell">Input Shell</h3>
+<pre><code>&quot;use strict&quot;;
+
+var React = require(&#39;react&#39;);
+
+var Input = React.createClass({
+    render: function() {
+        return (
+
+        );
+    }
+});
+
+module.exports = Input;</code></pre>
+<h3 id="react-order-of-operations">React Order of Operations</h3>
+<p>Lifecycle is similar to ASP.NET web forms … each component has a lifecycle</p>
+<ul>
+<li>getInitialState function … initial state load</li>
+<li><p>getDefaultProps … return a set a properties to use by default if parent doesn’t have value</p></li>
+<li>componentWillMount - runs immediately before rendering … good spot to set initial state (client and server) - like clearing fields on a login screen</li>
+<li>componentDidMount - runs immediately after rendering … access DOM, integrate, set timers, AJAX</li>
+<li>componentWillReceiveProps - runs when component receiving props (when properties have changed), not called on initial render … set state before render</li>
+<li>shouldComponentUpdate - before render when new props or state are being received … not called on initial render … performance, return false to void unnecessary renders (state changed, but don’t want to render again)</li>
+<li>componentWillUpdate - before render when new props or state are being received … use to prepare for an update</li>
+<li>componentDidUpdate - after components updates are flushed to the DOM, not called for the initial render, works with the DOM after an update</li>
+<li><p>componentWillUnmount - Immediately before component removed from the DOM … use for cleanup</p></li>
+</ul>
+<h3 id="handling-transitions">Handling Transitions</h3>
+<p>willTransitionTo - determines if a page will be transitioned to, ex: useful for check a user has been authenticated before they can get to a page willTransitionFrom - runs checks before user navigates away, ex: check form data is valid before leaving a page</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> Settings <span class="op">=</span> <span class="va">React</span>.<span class="at">createClass</span>(<span class="op">{</span>
+    <span class="dt">statics</span><span class="op">:</span> <span class="op">{</span>
+        <span class="dt">willTransitionTo</span><span class="op">:</span> <span class="kw">function</span> (transition<span class="op">,</span> params<span class="op">,</span> query<span class="op">,</span> callback) <span class="op">{</span>
+            <span class="cf">if</span> (<span class="op">!</span>isLoggedIn) <span class="op">{</span>
+                <span class="va">transition</span>.<span class="at">abort</span>()<span class="op">;</span>
+                <span class="at">callback</span>()<span class="op">;</span>
+            <span class="op">}</span>
+        <span class="op">},</span>
+        <span class="dt">willTransitionFrom</span><span class="op">:</span> <span class="kw">function</span> (transition<span class="op">,</span> component) <span class="op">{</span>
+            <span class="cf">if</span> (<span class="va">component</span>.<span class="at">fromHasUnsavedData</span>()) <span class="op">{</span>
+                <span class="cf">if</span> (<span class="op">!</span><span class="at">confirm</span>(<span class="st">&#39;Are you sure you want to leave without saving?&#39;</span>)) <span class="op">{</span>
+                    <span class="va">transition</span>.<span class="at">about</span>()<span class="op">;</span>
+                <span class="op">}</span>
+            <span class="op">}</span>
+        <span class="op">}</span>
+    <span class="op">}</span>
+
+    <span class="co">// ...</span>
+<span class="op">}</span>)<span class="op">;</span></code></pre></div>
+<h3 id="hash-history-url-support">Hash History URL support</h3>
+<p>location:9005/#/authors</p>
+<p>HTML5 History style, clean URL’s, needs modern browsers (won’t work on IE8)</p>
+<p>location:9005/authors - uses HTML history push state</p>
+<p>To enable this add this in react router: Router.run(routes, Router.HistoryLocation, function …)</p>
+<p>On the server need to route all requests to index.html so that react router can take over routing for the application</p>
+<p>Note: hash based URL’s do not require any configuration on the server and can be used as is</p>
+<h3 id="pages-and-change-handlers">Pages and Change Handlers</h3>
+<p>If you just create a form text input on a page, then the input will not be registered to accept any changes from the keyboard.</p>
+<p>In order to accept input initial state must be defined for the properties that will be set on the form.</p>
+<p>This is done by creating a JSON object representing the state in the view controller, and handing it down as props to the child form.</p>
+<p>The JSON looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    getInitialState<span class="op">:</span> <span class="kw">function</span>() <span class="op">{</span>
+        <span class="cf">return</span> <span class="op">{</span>
+            <span class="dt">author</span><span class="op">:</span> <span class="op">{</span> <span class="dt">id</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="dt">firstName</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="dt">lastName</span><span class="op">:</span> <span class="st">&#39;&#39;</span> <span class="op">}</span>
+        <span class="op">};</span>
+    <span class="op">},</span></code></pre></div>
+<p>To pass this down to the form replace this:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    <span class="op">&lt;</span>AuthorForm/<span class="op">&gt;</span></code></pre></div>
+<p>With this:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    <span class="op">&lt;</span>AuthorForm author<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">author</span><span class="op">}</span> <span class="ss">/&gt;</span></code></pre></div>
+<p>Then update the author form component … this is done by entering the props in the value field of the form text inputs like this:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    value<span class="op">={</span><span class="kw">this</span>.<span class="va">props</span>.<span class="va">author</span>.<span class="at">firstName</span><span class="op">}</span></code></pre></div>
+<p>Once this is done, change handlers also need to be setup for the form. In the view controller create a setAuthorState function.</p>
+<p>This takes the event that occurs (text entered in text box) … in example below field is one of the text fields, and value is the key that was pressed. The setState function updates the state, which gets passed as props to the value of the child form. Function below called with every key press.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    setAuthorState<span class="op">:</span> <span class="kw">function</span>(event) <span class="op">{</span>
+        <span class="kw">var</span> field <span class="op">=</span> <span class="va">event</span>.<span class="va">target</span>.<span class="at">name</span><span class="op">;</span>
+        <span class="kw">var</span> value <span class="op">=</span> <span class="va">event</span>.<span class="va">target</span>.<span class="at">value</span><span class="op">;</span>
+        <span class="kw">this</span>.<span class="va">state</span>.<span class="at">author</span>[field] <span class="op">=</span> value<span class="op">;</span>
+        <span class="cf">return</span> <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">author</span><span class="op">:</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">author</span><span class="op">}</span>)<span class="op">;</span>
+    <span class="op">},</span></code></pre></div>
+<p>A reference to this component has to be passed down to the child component.</p>
+<p>This is done here with an onChange handler:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    <span class="op">&lt;</span>AuthorForm author<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">author</span><span class="op">}</span> onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">setAuthorState</span><span class="op">}</span> <span class="ss">/&gt;</span></code></pre></div>
+<p>This is used in the child component here:</p>
+<pre><code>    ref=&quot;firstName&quot;
+    onChange={this.props.onChange}
+    value={this.props.author.firstName} /&gt;</code></pre>
+<h3 id="creating-reusable-inputs">Creating Reusable Inputs</h3>
+<p>As the input for text can be very verbose we need a reusable React Component for text inputs.</p>
+<p>Under common create a text input component.</p>
+<p>Once the text input component has been created it can be used in the AuthorForm like this.</p>
+<p>Add a reference to the component:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> Input <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;../common/textInput&#39;</span>)<span class="op">;</span></code></pre></div>
+<p>Then add the new streamlined version of the component:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">&lt;</span>Input
+    name<span class="op">=</span><span class="st">&quot;firstName&quot;</span>
+    label<span class="op">=</span><span class="st">&quot;First Name&quot;</span>
+    value<span class="op">={</span><span class="kw">this</span>.<span class="va">props</span>.<span class="va">author</span>.<span class="at">firstName</span><span class="op">}</span>
+    onChange<span class="op">={</span><span class="kw">this</span>.<span class="va">props</span>.<span class="at">onChange</span><span class="op">}</span>
+    error<span class="op">={</span><span class="kw">this</span>.<span class="va">props</span>.<span class="va">errors</span>.<span class="at">firstName</span><span class="op">}</span> <span class="ss">/&gt;</span></code></pre></div>
+<h3 id="saving-data">Saving Data</h3>
+<p>This is done with a function that takes one argument, event. This will be the event passed up from the child form.</p>
+<p>This function just takes the current state and saves it. Note that the state has been changed with every change on the form.</p>
+<p>The save event is triggered by the Save button on the form with fires an onSave event … onClick={this.props.onSave}</p>
+<p>Likewise the view controller is listening for onSave with an onSave handler here:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    <span class="op">&lt;</span>AuthorForm 
+        author<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">author</span><span class="op">}</span> 
+        onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">setAuthorState</span><span class="op">}</span>
+        onSave<span class="op">={</span><span class="kw">this</span>.<span class="at">saveAuthor</span><span class="op">}</span>
+        <span class="ss">/&gt;</span></code></pre></div>
+<h3 id="programmatic-redirects-with-react-router">Programmatic Redirects with React Router</h3>
+<p>To redirect the user to the list of authors after they click save author React Router can be used.</p>
+<p>This is done with the navigation mixin for React Router and this statement in the saveAuthor method:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">this</span>.<span class="at">transitionTo</span>(<span class="st">&#39;authors&#39;</span>)<span class="op">;</span></code></pre></div>
+<h3 id="notifications">Notifications</h3>
+<p>Visual feedback of save confirm with toastr.</p>
+<p>Go back to the command line and use npm to add toastr</p>
+<pre><code>npm install --save toastr@2.1.0</code></pre>
+<p>Once this is installed some changes need to be added to the gulpfile.</p>
+<p>Add the toastr css here to add it to the css bundle:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> config <span class="op">=</span> <span class="op">{</span>
+    <span class="dt">port</span><span class="op">:</span> <span class="dv">9005</span><span class="op">,</span>
+    <span class="dt">devBaseUrl</span><span class="op">:</span> <span class="st">&#39;http://localhost&#39;</span><span class="op">,</span>
+    <span class="dt">paths</span><span class="op">:</span> <span class="op">{</span>
+        <span class="dt">html</span><span class="op">:</span> <span class="st">&#39;./src/*.html&#39;</span><span class="op">,</span>
+        <span class="dt">js</span><span class="op">:</span> <span class="st">&#39;./src/**/*.js&#39;</span><span class="op">,</span>
+        <span class="dt">images</span><span class="op">:</span> <span class="st">&#39;./src/images/*&#39;</span><span class="op">,</span>
+        <span class="dt">css</span><span class="op">:</span> [
+            <span class="st">&#39;node_modules/bootstrap/dist/css/bootstrap.min.css&#39;</span><span class="op">,</span>
+            <span class="st">&#39;node_modules/bootstrap/dist/css/bootstrap-theme.min.css&#39;</span><span class="op">,</span>
+            <span class="st">&#39;node_modules/toastr/toastr.css&#39;</span>
+        ]<span class="op">,</span></code></pre></div>
+<p>Then in the manageAuthorPage reference the toastr library and then call it with toastr.success(‘Author saved.’)</p>
+<h3 id="validation">Validation</h3>
+<p>Like an author state with an author object was created and passed to the child component as props, the same thing is done with an errors object. This are also added to the AuthorForm’s children, the inputs.</p>
+<h3 id="proptypes">PropTypes</h3>
+<pre><code>author - it is required an author object is passed from the parent
+errors - it is optional an errors object is passed from the parent
+onSave/onChange - it is required an onSave and onChange function are passed from the parent</code></pre>
+<h3 id="transitions">Transitions</h3>
+<p>To prevent a user from navigating away from a page and losing data before they save the form, transistions can be used.</p>
+<p>To do this add a new statics function.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">statics<span class="op">:</span> <span class="op">{</span>
+    <span class="dt">willTransitionFrom</span><span class="op">:</span> <span class="kw">function</span>(transition<span class="op">,</span> component) <span class="op">{</span>
+        <span class="cf">if</span> (<span class="va">component</span>.<span class="va">state</span>.<span class="at">dirty</span>) <span class="op">{</span>
+            
+        <span class="op">}</span>
+    <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+<p>Start tracking a state of dirty along with author and errors.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">author<span class="op">:</span> <span class="op">{},</span>
+errors<span class="op">:</span> <span class="op">{},</span>
+dirty<span class="op">:</span> <span class="kw">false</span></code></pre></div>
+<p>Make a call to set state in the change handler setAuthorState and the saveAuthor function.</p>
+<h3 id="editing-existing-data">Editing Existing Data</h3>
+<p>Define a route to handle editing authors in routes, note special path.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">&lt;</span>Route name<span class="op">=</span><span class="st">&quot;manageAuthor&quot;</span> path<span class="op">=</span><span class="st">&quot;author/:id&quot;</span> handler<span class="op">={</span><span class="at">require</span>(<span class="st">&#39;./components/authors/manageAuthorPage&#39;</span>)<span class="op">}</span> <span class="ss">/&gt;</span></code></pre></div>
+<p>The best place to hydrate components is inside of componentWillMount, which is run immediatly before the page is rendered. Setting state in this function will not trigger the page to re-render. If called in componentDidMount the page would re-render.</p>
+<p>To pull the authorId from the URL do this:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> authorId <span class="op">=</span> <span class="kw">this</span>.<span class="va">props</span>.<span class="va">params</span>.<span class="at">id</span></code></pre></div>
+<h3 id="flux">Flux</h3>
+<p>Flux is a name for a pattern of unidirectional data flow … note: this means one way (unlike Angular).</p>
+<p>Changes to application state are controlled by a centralized dispatcher.</p>
+<p>Will combine the Flux dispatcher and a javascript event library.</p>
+<p>Redux is a Flux implementation. Others are Alt, Reflux, Flummox, etc …</p>
+<p>In flux when something is changed in a textbox the store is not immediately changed.</p>
+<p>In two way binding the view model is updated by the view directly.</p>
+<p>With unidirectional dataflow this the change looks like this:</p>
+<pre><code>Action --&gt; Dispatcher --&gt; Store --&gt; React View
+  ^                                     |
+  |--------------------------------------</code></pre>
+<p>Actions occur and dispatcher notifies any stores that have registered with the dispatcher that an action occurred.</p>
+<p>When the store changes the React component is updated and the user sees the change in the UI.</p>
+<p>The view doesn’t directly update state, it fires off actions which ultimately update that state.</p>
+<p>This makes debugging easier as actions are easier to trace.</p>
+<p>Two way binding is simplier conceptually and requires less binding, but unidirectional flows make you application easier to work with.</p>
+<p>Undirectional flows also make it easier to update multiple stores when an action occurs.</p>
+<h3 id="three-core-flux-concepts">Three Core Flux Concepts</h3>
+<h4 id="actions">Actions</h4>
+<p>Actions describe user interactions that happen in your React components, for example a button that is clicked to delete a user.</p>
+<p>These actions are handled by a centralized dispatcher, who notifies anyone that cares. The dispatcher is a singleton registry, which is a centralized list of callbacks.</p>
+<p>The dispatcher makes calls to stores, stores hold the application state (application data) and when these are updated the React view is updated with the changes.</p>
+<p>The UI never updates the data directly, and the data never updates the UI directly … updates to the UI are rendered due to changes to the store.</p>
+<p>The dispatcher exposes a method that allows us to trigger a dispatch to the stores, and to include a payload of data which is the action.</p>
+<p>Action creators are dispatcher helper methods that describe all of the actions that are possible in the application (like add user, update user, etc).</p>
+<p>Actions can be triggered from the UI or the server.</p>
+<p>Actions define a CONSTANT that is the action type. An action payload always has a type and data.</p>
+<p>Here is an example:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">{</span>
+    <span class="dt">type</span><span class="op">:</span> USER_SAVED
+    <span class="dt">data</span><span class="op">:</span> <span class="op">{</span>
+        <span class="dt">firstName</span><span class="op">:</span> <span class="st">&#39;John&#39;</span><span class="op">,</span>
+        <span class="dt">lastName</span><span class="op">:</span> <span class="st">&#39;Smith&#39;</span>
+    <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+<h4 id="dispatcher">Dispatcher</h4>
+<p>Stores register with the dispatcher so they can be notified when data changes. The dispatcher holds a list of callbacks.</p>
+<p>The dispatcher sends actions to the stores.</p>
+<p>With Flux a constants file should be created in a single place.</p>
+<h4 id="stores">Stores</h4>
+<p>Stores hold app state, logic, and data retrieval. A store is not a model, a store contains models.</p>
+<p>Over time large apps create multiple stores.</p>
+<p>Stores get updated because they have callbacks that are registered with the dispatcher.</p>
+<p>React components should never try to register with the dispatcher directly.</p>
+<p>Flux stores are extended with Node’s EventEmitter, this allows stores to both listen for and broadcast events, and it allows React components to update based on those events. The React components listen to the stores, which is how they know application state has changed.</p>
+<p>The store is the only thing in the application that knows how to update data, and this is the most important part of Flux.</p>
+<p>Every store does the following</p>
+<ol type="1">
+<li>Extend EventEmitter</li>
+<li>addChangeListener and removeChangeListener - ties React component to store so it knows when something changes</li>
+<li>emitChange</li>
+</ol>
+<h3 id="controller-views">Controller Views</h3>
+<p>Top level component that composes child components. These should interact with stores, and pass the updates to their children via props.</p>
+<p>Controller views hold data in state and send data to children as props. It is recommended to have a controller view at the top that interacts with the store, holds data in its state, and passes this data down to its children as props.</p>
+<p>It is helpful to pass a single large object down to all children so you don’t have to change code in multiple children as new properties are added.</p>
+<h3 id="flux-flow-in-detail">Flux Flow in Detail</h3>
+<p>Action - commonly talk to WebAPI’s to get and receive data as well as sending action payloads to the dispatcher Send Action Payload - JSON above Dispatcher - checks list of registered callbacks Send Action Payload to registered callbacks Store updates internal storage based on payload The Store emits (fires) a change event React View</p>
+<p>For example, in promproject the userActions action calls the loginApi on login and then calls dispatch with action of either loginSuccess or loginError (failure). The JSON payload for success is the type USER_LOGGED_IN_SUCCESS and the user object.</p>
+<h3 id="a-chat-with-flux">A Chat with Flux</h3>
+<p>Another way to think about Flux, as a conversation.</p>
+<ul>
+<li><strong>React</strong> Hey CourseAction, someone just clicked the “Save Course” button.</li>
+<li><strong>Action</strong> Thanks React! I registered an action creator with the dispatcher, so the dispatcher shoudl take care of notifying all the stores that care.</li>
+<li><strong>Dispatcher</strong> Let me see who cares about a course being saved. Ah! Looks like CourseStore has registered a callback with me, I let her know.</li>
+<li><strong>Store</strong> Hi dispatcher! Thanks for the update, I’ll update my data with the payload you sent. Then I’ll emit an event to the React components that care.</li>
+<li><strong>React</strong> New data from the store! I’ll update the UI to reflect this.</li>
+</ul>
+            </div>
+    </div>
+  </div>
+</body>
+</html>

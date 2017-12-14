@@ -1,0 +1,1 @@
+pandoc readme.md --template=template.html --css=template.css -f markdown -t html -s -o readme.html
