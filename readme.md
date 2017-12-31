@@ -426,4 +426,39 @@ Contains five functions.
 4. dispatch(object payload) - "Hey dispatcher, tell the stores about this action." - Action
 5. isDispatching() - "I'm busy dispatching callbacks right now."
 
+### Action
+
+Under src/actions an authorAction is defined this is an Action Creator.
+
+This contains an action to createAuthor which fires off a call to the author API to save the author.
+
+Then the actual action is dispatched with the dispatcher, this tells the stores that an author was created.
+
+### Store
+
+The store defines an object-assign polyfill. This is used to glue two objects together.
+ 
+Here it is used to glue together a store (author store for example) and an event emitter into a single object. 
+
+This allows us to add event emitter capabilities to the author store we are creating. 
+
+Inside the author store three functions are supported:
+
+1. addChangeListener - for components to say: I would like to know when this store changes
+2. removeChangeListener - mirror image of add change listener
+3. emitChange - this.emit('change') ... the store changed, emit event
+
+Store must be registered with the dispatcher so it is notified when an action happens.
+
+This is done with a Dispatcher.register statement at the bottom of the store.
+
+Since every store that is registered with the dispatcher is notified on **every** action, some special logic is need to only respond to events the store cares about.
+
+A switch statement is used to do this. 
+
+All of the other Flux implementations build on the principals of the action/dispatcher/store concept.
+
+The **public API** of the store are the three functions above. 
+
+Stopped at "Stores: Private Storage" 0:34 of 3:55
 
