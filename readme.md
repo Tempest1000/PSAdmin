@@ -458,7 +458,9 @@ A switch statement is used to do this.
 
 All of the other Flux implementations build on the principals of the action/dispatcher/store concept.
 
-The **public API** of the store are the three functions above. 
+The **public API** of the store are the three functions above. Only the AuthorStore is exported, so no one can mess with the private author data in the class in a private author array. 
 
-Stopped at "Stores: Private Storage" 0:34 of 3:55
+To getAuthors from the store a getAllAuthors function is exposed. The store is called to get authors instead of the API in the author pages.
+
+Stopped at "Stores: Initialization" 0:00 of 3:55
 
