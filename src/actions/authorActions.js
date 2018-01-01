@@ -35,3 +35,5 @@ var AuthorActions = {
         });
     }
 };
+
+module.exports = AuthorActions;
