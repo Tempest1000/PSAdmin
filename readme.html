@@ -43,7 +43,7 @@ code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Ann
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
-  <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="template.css" type="text/css" />
 </head>
 <body>
     <div class="container">
@@ -64,28 +64,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <h2 id="notes">Notes</h2>
 <h3 id="input-shell">Input Shell</h3>
-<pre><code>&quot;use strict&quot;;
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="st">&quot;use strict&quot;</span><span class="op">;</span>
 
-var React = require(&#39;react&#39;);
+<span class="kw">var</span> React <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;react&#39;</span>)<span class="op">;</span>
 
-var Input = React.createClass({
-    render: function() {
-        return (
+<span class="kw">var</span> Input <span class="op">=</span> <span class="va">React</span>.<span class="at">createClass</span>(<span class="op">{</span>
+    <span class="dt">render</span><span class="op">:</span> <span class="kw">function</span>() <span class="op">{</span>
+        <span class="cf">return</span> (
 
-        );
-    }
-});
+        )<span class="op">;</span>
+    <span class="op">}</span>
+<span class="op">}</span>)<span class="op">;</span>
 
-module.exports = Input;</code></pre>
+<span class="va">module</span>.<span class="at">exports</span> <span class="op">=</span> Input<span class="op">;</span></code></pre></div>
 <h3 id="react-order-of-operations">React Order of Operations</h3>
 <p>Lifecycle is similar to ASP.NET web forms … each component has a lifecycle</p>
 <ul>
 <li>getInitialState function … initial state load</li>
-<li><p>getDefaultProps … return a set a properties to use by default if parent doesn’t have value</p></li>
+<li><p>getDefaultProps … return a set a properties to use by default if parent doesn't have value</p></li>
 <li>componentWillMount - runs immediately before rendering … good spot to set initial state (client and server) - like clearing fields on a login screen</li>
 <li>componentDidMount - runs immediately after rendering … access DOM, integrate, set timers, AJAX</li>
 <li>componentWillReceiveProps - runs when component receiving props (when properties have changed), not called on initial render … set state before render</li>
-<li>shouldComponentUpdate - before render when new props or state are being received … not called on initial render … performance, return false to void unnecessary renders (state changed, but don’t want to render again)</li>
+<li>shouldComponentUpdate - before render when new props or state are being received … not called on initial render … performance, return false to void unnecessary renders (state changed, but don't want to render again)</li>
 <li>componentWillUpdate - before render when new props or state are being received … use to prepare for an update</li>
 <li>componentDidUpdate - after components updates are flushed to the DOM, not called for the initial render, works with the DOM after an update</li>
 <li><p>componentWillUnmount - Immediately before component removed from the DOM … use for cleanup</p></li>
@@ -113,11 +113,11 @@ module.exports = Input;</code></pre>
 <span class="op">}</span>)<span class="op">;</span></code></pre></div>
 <h3 id="hash-history-url-support">Hash History URL support</h3>
 <p>location:9005/#/authors</p>
-<p>HTML5 History style, clean URL’s, needs modern browsers (won’t work on IE8)</p>
+<p>HTML5 History style, clean URL's, needs modern browsers (won't work on IE8)</p>
 <p>location:9005/authors - uses HTML history push state</p>
-<p>To enable this add this in react router: Router.run(routes, Router.HistoryLocation, function …)</p>
+<p>To enable this add this in react router: Router.run(routes, Router.HistoryLocation, function ...)</p>
 <p>On the server need to route all requests to index.html so that react router can take over routing for the application</p>
-<p>Note: hash based URL’s do not require any configuration on the server and can be used as is</p>
+<p>Note: hash based URL's do not require any configuration on the server and can be used as is</p>
 <h3 id="pages-and-change-handlers">Pages and Change Handlers</h3>
 <p>If you just create a form text input on a page, then the input will not be registered to accept any changes from the keyboard.</p>
 <p>In order to accept input initial state must be defined for the properties that will be set on the form.</p>
@@ -132,10 +132,10 @@ module.exports = Input;</code></pre>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    <span class="op">&lt;</span>AuthorForm/<span class="op">&gt;</span></code></pre></div>
 <p>With this:</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    <span class="op">&lt;</span>AuthorForm author<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">author</span><span class="op">}</span> <span class="ss">/&gt;</span></code></pre></div>
-<p>Then update the author form component … this is done by entering the props in the value field of the form text inputs like this:</p>
+<p>Then update the author form component ... this is done by entering the props in the value field of the form text inputs like this:</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    value<span class="op">={</span><span class="kw">this</span>.<span class="va">props</span>.<span class="va">author</span>.<span class="at">firstName</span><span class="op">}</span></code></pre></div>
 <p>Once this is done, change handlers also need to be setup for the form. In the view controller create a setAuthorState function.</p>
-<p>This takes the event that occurs (text entered in text box) … in example below field is one of the text fields, and value is the key that was pressed. The setState function updates the state, which gets passed as props to the value of the child form. Function below called with every key press.</p>
+<p>This takes the event that occurs (text entered in text box) ... in example below field is one of the text fields, and value is the key that was pressed. The setState function updates the state, which gets passed as props to the value of the child form. Function below called with every key press.</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    setAuthorState<span class="op">:</span> <span class="kw">function</span>(event) <span class="op">{</span>
         <span class="kw">var</span> field <span class="op">=</span> <span class="va">event</span>.<span class="va">target</span>.<span class="at">name</span><span class="op">;</span>
         <span class="kw">var</span> value <span class="op">=</span> <span class="va">event</span>.<span class="va">target</span>.<span class="at">value</span><span class="op">;</span>
@@ -165,7 +165,7 @@ module.exports = Input;</code></pre>
 <h3 id="saving-data">Saving Data</h3>
 <p>This is done with a function that takes one argument, event. This will be the event passed up from the child form.</p>
 <p>This function just takes the current state and saves it. Note that the state has been changed with every change on the form.</p>
-<p>The save event is triggered by the Save button on the form with fires an onSave event … onClick={this.props.onSave}</p>
+<p>The save event is triggered by the Save button on the form with fires an onSave event ... onClick={this.props.onSave}</p>
 <p>Likewise the view controller is listening for onSave with an onSave handler here:</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">    <span class="op">&lt;</span>AuthorForm 
         author<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">author</span><span class="op">}</span> 
@@ -194,9 +194,9 @@ module.exports = Input;</code></pre>
             <span class="st">&#39;node_modules/bootstrap/dist/css/bootstrap-theme.min.css&#39;</span><span class="op">,</span>
             <span class="st">&#39;node_modules/toastr/toastr.css&#39;</span>
         ]<span class="op">,</span></code></pre></div>
-<p>Then in the manageAuthorPage reference the toastr library and then call it with toastr.success(‘Author saved.’)</p>
+<p>Then in the manageAuthorPage reference the toastr library and then call it with toastr.success('Author saved.')</p>
 <h3 id="validation">Validation</h3>
-<p>Like an author state with an author object was created and passed to the child component as props, the same thing is done with an errors object. This are also added to the AuthorForm’s children, the inputs.</p>
+<p>Like an author state with an author object was created and passed to the child component as props, the same thing is done with an errors object. This are also added to the AuthorForm's children, the inputs.</p>
 <h3 id="proptypes">PropTypes</h3>
 <pre><code>author - it is required an author object is passed from the parent
 errors - it is optional an errors object is passed from the parent
@@ -223,10 +223,10 @@ dirty<span class="op">:</span> <span class="kw">false</span></code></pre></div>
 <p>To pull the authorId from the URL do this:</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> authorId <span class="op">=</span> <span class="kw">this</span>.<span class="va">props</span>.<span class="va">params</span>.<span class="at">id</span></code></pre></div>
 <h3 id="flux">Flux</h3>
-<p>Flux is a name for a pattern of unidirectional data flow … note: this means one way (unlike Angular).</p>
+<p>Flux is a name for a pattern of unidirectional data flow ... note: this means one way (unlike Angular).</p>
 <p>Changes to application state are controlled by a centralized dispatcher.</p>
 <p>Will combine the Flux dispatcher and a javascript event library.</p>
-<p>Redux is a Flux implementation. Others are Alt, Reflux, Flummox, etc …</p>
+<p>Redux is a Flux implementation. Others are Alt, Reflux, Flummox, etc ...</p>
 <p>In flux when something is changed in a textbox the store is not immediately changed.</p>
 <p>In two way binding the view model is updated by the view directly.</p>
 <p>With unidirectional dataflow this the change looks like this:</p>
@@ -235,7 +235,7 @@ dirty<span class="op">:</span> <span class="kw">false</span></code></pre></div>
   |--------------------------------------</code></pre>
 <p>Actions occur and dispatcher notifies any stores that have registered with the dispatcher that an action occurred.</p>
 <p>When the store changes the React component is updated and the user sees the change in the UI.</p>
-<p>The view doesn’t directly update state, it fires off actions which ultimately update that state.</p>
+<p>The view doesn't directly update state, it fires off actions which ultimately update that state.</p>
 <p>This makes debugging easier as actions are easier to trace.</p>
 <p>Two way binding is simplier conceptually and requires less binding, but unidirectional flows make you application easier to work with.</p>
 <p>Undirectional flows also make it easier to update multiple stores when an action occurs.</p>
@@ -244,7 +244,7 @@ dirty<span class="op">:</span> <span class="kw">false</span></code></pre></div>
 <p>Actions describe user interactions that happen in your React components, for example a button that is clicked to delete a user.</p>
 <p>These actions are handled by a centralized dispatcher, who notifies anyone that cares. The dispatcher is a singleton registry, which is a centralized list of callbacks.</p>
 <p>The dispatcher makes calls to stores, stores hold the application state (application data) and when these are updated the React view is updated with the changes.</p>
-<p>The UI never updates the data directly, and the data never updates the UI directly … updates to the UI are rendered due to changes to the store.</p>
+<p>The UI never updates the data directly, and the data never updates the UI directly ... updates to the UI are rendered due to changes to the store.</p>
 <p>The dispatcher exposes a method that allows us to trigger a dispatch to the stores, and to include a payload of data which is the action.</p>
 <p>Action creators are dispatcher helper methods that describe all of the actions that are possible in the application (like add user, update user, etc).</p>
 <p>Actions can be triggered from the UI or the server.</p>
@@ -266,10 +266,10 @@ dirty<span class="op">:</span> <span class="kw">false</span></code></pre></div>
 <p>Over time large apps create multiple stores.</p>
 <p>Stores get updated because they have callbacks that are registered with the dispatcher.</p>
 <p>React components should never try to register with the dispatcher directly.</p>
-<p>Flux stores are extended with Node’s EventEmitter, this allows stores to both listen for and broadcast events, and it allows React components to update based on those events. The React components listen to the stores, which is how they know application state has changed.</p>
+<p>Flux stores are extended with Node's EventEmitter, this allows stores to both listen for and broadcast events, and it allows React components to update based on those events. The React components listen to the stores, which is how they know application state has changed.</p>
 <p>The store is the only thing in the application that knows how to update data, and this is the most important part of Flux.</p>
 <p>Every store does the following</p>
-<ol type="1">
+<ol style="list-style-type: decimal">
 <li>Extend EventEmitter</li>
 <li>addChangeListener and removeChangeListener - ties React component to store so it knows when something changes</li>
 <li>emitChange</li>
@@ -277,18 +277,75 @@ dirty<span class="op">:</span> <span class="kw">false</span></code></pre></div>
 <h3 id="controller-views">Controller Views</h3>
 <p>Top level component that composes child components. These should interact with stores, and pass the updates to their children via props.</p>
 <p>Controller views hold data in state and send data to children as props. It is recommended to have a controller view at the top that interacts with the store, holds data in its state, and passes this data down to its children as props.</p>
-<p>It is helpful to pass a single large object down to all children so you don’t have to change code in multiple children as new properties are added.</p>
+<p>It is helpful to pass a single large object down to all children so you don't have to change code in multiple children as new properties are added.</p>
 <h3 id="flux-flow-in-detail">Flux Flow in Detail</h3>
-<p>Action - commonly talk to WebAPI’s to get and receive data as well as sending action payloads to the dispatcher Send Action Payload - JSON above Dispatcher - checks list of registered callbacks Send Action Payload to registered callbacks Store updates internal storage based on payload The Store emits (fires) a change event React View</p>
+<p>Action - commonly talk to WebAPI's to get and receive data as well as sending action payloads to the dispatcher Send Action Payload - JSON above Dispatcher - checks list of registered callbacks Send Action Payload to registered callbacks Store updates internal storage based on payload The Store emits (fires) a change event React View</p>
 <p>For example, in promproject the userActions action calls the loginApi on login and then calls dispatch with action of either loginSuccess or loginError (failure). The JSON payload for success is the type USER_LOGGED_IN_SUCCESS and the user object.</p>
 <h3 id="a-chat-with-flux">A Chat with Flux</h3>
 <p>Another way to think about Flux, as a conversation.</p>
 <ul>
-<li><strong>React</strong> Hey CourseAction, someone just clicked the “Save Course” button.</li>
-<li><strong>Action</strong> Thanks React! I registered an action creator with the dispatcher, so the dispatcher shoudl take care of notifying all the stores that care.</li>
+<li><strong>React</strong> Hey CourseAction, someone just clicked the &quot;Save Course&quot; button.</li>
+<li><strong>Action</strong> Thanks React! I registered an action creator with the dispatcher, so the dispatcher should take care of notifying all the stores that care.</li>
 <li><strong>Dispatcher</strong> Let me see who cares about a course being saved. Ah! Looks like CourseStore has registered a callback with me, I let her know.</li>
-<li><strong>Store</strong> Hi dispatcher! Thanks for the update, I’ll update my data with the payload you sent. Then I’ll emit an event to the React components that care.</li>
-<li><strong>React</strong> New data from the store! I’ll update the UI to reflect this.</li>
+<li><strong>Store</strong> Hi dispatcher! Thanks for the update, I'll update my data with the payload you sent. Then I'll emit an event to the React components that care.</li>
+<li><strong>React</strong> New data from the store! I'll update the UI to reflect this.</li>
+</ul>
+<h3 id="flux-api">Flux API</h3>
+<p>Contains five functions.</p>
+<ol style="list-style-type: decimal">
+<li>register(function callback) - &quot;Hey dispatcher, run me when actions happen.&quot; - Store</li>
+<li>unregister(function callback) - &quot;Hey dispatcher, I don't want to know about this action.&quot; - Store</li>
+<li>waitFor(array<string> ids) - &quot;Update this store first.&quot; - Store</li>
+<li>dispatch(object payload) - &quot;Hey dispatcher, tell the stores about this action.&quot; - Action</li>
+<li>isDispatching() - &quot;I'm busy dispatching callbacks right now.&quot;</li>
+</ol>
+<h3 id="action">Action</h3>
+<p>Under src/actions an authorAction is defined this is an Action Creator.</p>
+<p>This contains an action to createAuthor which fires off a call to the author API to save the author.</p>
+<p>Then the actual action is dispatched with the dispatcher, this tells the stores that an author was created.</p>
+<h3 id="store">Store</h3>
+<p>The store defines an object-assign polyfill. This is used to glue two objects together.</p>
+<p>Here it is used to glue together a store (author store for example) and an event emitter into a single object.</p>
+<p>This allows us to add event emitter capabilities to the author store we are creating.</p>
+<p>Inside the author store three functions are supported:</p>
+<ol style="list-style-type: decimal">
+<li>addChangeListener - for components to say: I would like to know when this store changes</li>
+<li>removeChangeListener - mirror image of add change listener</li>
+<li>emitChange - this.emit('change') ... the store changed, emit event</li>
+</ol>
+<p>Store must be registered with the dispatcher so it is notified when an action happens.</p>
+<p>This is done with a Dispatcher.register statement at the bottom of the store.</p>
+<p>Since every store that is registered with the dispatcher is notified on <strong>every</strong> action, some special logic is need to only respond to events the store cares about.</p>
+<p>A switch statement is used to do this.</p>
+<p>All of the other Flux implementations build on the principals of the action/dispatcher/store concept.</p>
+<p>The <strong>public API</strong> of the store are the three functions above.</p>
+<p>The actual author data in the store is <strong>private</strong>. At the top of the file a private author array is declared.</p>
+<p>Only the AuthorStore is exported, so no one can mess with the private author data in the class in a private author array.</p>
+<p>Altering the author data must be done through the methods exposed in the AuthorStore API.</p>
+<p>To getAuthors from the store a getAllAuthors function is exposed. The store is called to get authors instead of the API in the author pages.</p>
+<p>When the private data is altered the change is then emitted with a call to emitChange. Any classes that have used AuthorStore.addChangeListener will receive the changes.</p>
+<p>One such place is the AuthorPage which is the View Controller that sits on top of the AuthorList. Here the list of authors is maintained in state, and passed to the author list as props.</p>
+<p>When the underlying author data changes in the AuthorStore the change is emitted, and is captured in the addChangeListener that is wired up in the AuthorPage and the _onChange method is called.</p>
+<p>In the _onChange method, set state is called and the author data in state is refreshed with the current data from the AuthorStore. Additional info on this is in the listeners section below.</p>
+<h3 id="stores-initialization">Stores: Initialization</h3>
+<p>Initialization will now occur in main.js</p>
+<p>Create an initialization actions file that will be used to bootstrap the application.</p>
+<p>The author store needs to know when initialActions is called when the app starts.</p>
+<p>To do this register the action in the Dispatcher register section of the authorStore.</p>
+<h3 id="stores-listeners">Stores: Listeners</h3>
+<p>When a store changes React components need to be notified, for example the author list needs to know that it needs to reload when and author is deleted.</p>
+<p>To do this add a _onChange method to the authorPage which sets to the author state to the getAllAuthors method of the AuthorStore, then call this method whenever the list is altered.</p>
+<p>In addition to this on componentWillMount add the AuthorStore addChangeListener, this points to _onChange.</p>
+<h3 id="debugging">Debugging</h3>
+<p>Instead of searching bundle.js for code and adding a breakpoint to this, just add this line in code:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="cf">debugger</span><span class="op">;</span></code></pre></div>
+<p>Walkthrough of deleting an author with the flow from earlier:</p>
+<ul>
+<li><strong>React</strong> From authorList ... Hey authorActions, someone just clicked the &quot;Delete Author&quot; button.</li>
+<li><strong>Action</strong> I registered an action creator with the dispatcher in authorActions, so the dispatcher will notify all stores. DELETE_AUTHOR will be dispatched.</li>
+<li><strong>Dispatcher</strong> An author is being deleted. AuthorStore has registered a callback, this is called.</li>
+<li><strong>Store</strong> Receives update from dispatcher, updateds data with the payload sent. Lodash is used to remove the author, then event is emitted.</li>
+<li><strong>React</strong> New data from the store received in the changeListener wired up in authorPage, UI is updated to reflect this.</li>
 </ul>
             </div>
     </div>

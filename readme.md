@@ -14,7 +14,7 @@
 
 ### Input Shell
 
-````
+```javascript
 "use strict";
 
 var React = require('react');
@@ -28,7 +28,7 @@ var Input = React.createClass({
 });
 
 module.exports = Input;
-````
+```
 
 ### React Order of Operations
 
@@ -51,7 +51,7 @@ Lifecycle is similar to ASP.NET web forms … each component has a lifecycle
 willTransitionTo - determines if a page will be transitioned to, ex: useful for check a user has been authenticated before they can get to a page
 willTransitionFrom - runs checks before user navigates away, ex: check form data is valid before leaving a page
 
-````javascript
+```javascript
 var Settings = React.createClass({
     statics: {
         willTransitionTo: function (transition, params, query, callback) {
@@ -71,7 +71,7 @@ var Settings = React.createClass({
 
     // ...
 });
-````
+```
 
 ### Hash History URL support
 
@@ -97,31 +97,31 @@ This is done by creating a JSON object representing the state in the view contro
 
 The JSON looks like this:
 
-````javascript
+```javascript
     getInitialState: function() {
         return {
             author: { id: '', firstName: '', lastName: '' }
         };
     },
-````
+```
 
 To pass this down to the form replace this:
 
-````javascript
+```javascript
     <AuthorForm/>
-````
+```
 
 With this:
 
-````javascript
+```javascript
     <AuthorForm author={this.state.author} />
-````
+```
 
 Then update the author form component ... this is done by entering the props in the value field of the form text inputs like this:
 
-````javascript
+```javascript
     value={this.props.author.firstName}
-````
+```
 
 Once this is done, change handlers also need to be setup for the form. In the view controller create a setAuthorState function.
 
@@ -129,30 +129,30 @@ This takes the event that occurs (text entered in text box) ... in example below
 The setState function updates the state, which gets passed as props to the value of the child form.
 Function below called with every key press.
 
-````javascript
+```javascript
     setAuthorState: function(event) {
         var field = event.target.name;
         var value = event.target.value;
         this.state.author[field] = value;
         return this.setState({author: this.state.author});
     },
-````
+```
 
 A reference to this component has to be passed down to the child component. 
 
 This is done here with an onChange handler:
 
-````javascript
+```javascript
     <AuthorForm author={this.state.author} onChange={this.setAuthorState} />
-````
+```
 
 This is used in the child component here:
 
-````
+```
     ref="firstName"
     onChange={this.props.onChange}
     value={this.props.author.firstName} />
-````
+```
 
 ### Creating Reusable Inputs
 
@@ -164,20 +164,20 @@ Once the text input component has been created it can be used in the AuthorForm 
 
 Add a reference to the component:
 
-````javascript
+```javascript
 var Input = require('../common/textInput');
-````
+```
 
 Then add the new streamlined version of the component:
 
-````javascript
+```javascript
 <Input
     name="firstName"
     label="First Name"
     value={this.props.author.firstName}
     onChange={this.props.onChange}
     error={this.props.errors.firstName} />
-````
+```
 
 ### Saving Data
 
@@ -189,13 +189,13 @@ The save event is triggered by the Save button on the form with fires an onSave 
 
 Likewise the view controller is listening for onSave with an onSave handler here:
 
-````javascript
+```javascript
     <AuthorForm 
         author={this.state.author} 
         onChange={this.setAuthorState}
         onSave={this.saveAuthor}
         />
-````
+```
 
 ### Programmatic Redirects with React Router
 
@@ -203,9 +203,9 @@ To redirect the user to the list of authors after they click save author React R
 
 This is done with the navigation mixin for React Router and this statement in the saveAuthor method:
 
-````javascript
+```javascript
 this.transitionTo('authors');
-````
+```
 
 ### Notifications
 
@@ -213,15 +213,15 @@ Visual feedback of save confirm with toastr.
 
 Go back to the command line and use npm to add toastr
 
-````
+```
 npm install --save toastr@2.1.0
-````
+```
 
 Once this is installed some changes need to be added to the gulpfile.
 
 Add the toastr css here to add it to the css bundle:
 
-````javascript
+```javascript
 var config = {
     port: 9005,
     devBaseUrl: 'http://localhost',
@@ -234,7 +234,7 @@ var config = {
             'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
             'node_modules/toastr/toastr.css'
         ],
-````
+```
 
 Then in the manageAuthorPage reference the toastr library and then call it with toastr.success('Author saved.')
 
@@ -255,7 +255,7 @@ To prevent a user from navigating away from a page and losing data before they s
 
 To do this add a new statics function.
 
-````javascript
+```javascript
 statics: {
     willTransitionFrom: function(transition, component) {
         if (component.state.dirty) {
@@ -263,15 +263,15 @@ statics: {
         }
     }
 }
-````
+```
 
 Start tracking a state of dirty along with author and errors.
 
-````javascript
+```javascript
 author: {},
 errors: {},
 dirty: false
-````
+```
 
 Make a call to set state in the change handler setAuthorState and the saveAuthor function.
 
@@ -279,18 +279,18 @@ Make a call to set state in the change handler setAuthorState and the saveAuthor
 
 Define a route to handle editing authors in routes, note special path.
 
-````javascript
+```javascript
 <Route name="manageAuthor" path="author/:id" handler={require('./components/authors/manageAuthorPage')} />
-````
+```
 
 The best place to hydrate components is inside of componentWillMount, which is run immediatly before the page is rendered.
 Setting state in this function will not trigger the page to re-render. If called in componentDidMount the page would re-render.
 
 To pull the authorId from the URL do this:
 
-````javascript
+```javascript
 var authorId = this.props.params.id
-````
+```
 
 ### Flux
 
@@ -308,11 +308,11 @@ In two way binding the view model is updated by the view directly.
 
 With unidirectional dataflow this the change looks like this:
 
-````
+```
 Action --> Dispatcher --> Store --> React View
   ^                                     |
   |--------------------------------------
-````
+```
 
 Actions occur and dispatcher notifies any stores that have registered with the dispatcher that an action occurred.
 
@@ -348,7 +348,7 @@ Actions define a CONSTANT that is the action type. An action payload always has 
 
 Here is an example:
 
-````javascript
+```javascript
 {
     type: USER_SAVED
     data: {
@@ -356,7 +356,7 @@ Here is an example:
         lastName: 'Smith'
     }
 }
-````
+```
 
 #### Dispatcher
 
@@ -411,7 +411,7 @@ For example, in promproject the userActions action calls the loginApi on login a
 Another way to think about Flux, as a conversation.
 
 - **React**      Hey CourseAction, someone just clicked the "Save Course" button. 
-- **Action**     Thanks React! I registered an action creator with the dispatcher, so the dispatcher shoudl take care of notifying all the stores that care.
+- **Action**     Thanks React! I registered an action creator with the dispatcher, so the dispatcher should take care of notifying all the stores that care.
 - **Dispatcher** Let me see who cares about a course being saved. Ah! Looks like CourseStore has registered a callback with me, I let her know.
 - **Store**      Hi dispatcher! Thanks for the update, I'll update my data with the payload you sent. Then I'll emit an event to the React components that care.
 - **React**      New data from the store! I'll update the UI to reflect this. 
@@ -494,7 +494,21 @@ To do this add a _onChange method to the authorPage which sets to the author sta
 
 In addition to this on componentWillMount add the AuthorStore addChangeListener, this points to _onChange.
 
+### Debugging
 
+Instead of searching bundle.js for code and adding a breakpoint to this, just add this line in code:
+
+```javascript
+debugger;
+```
+
+Walkthrough of deleting an author with the flow from earlier:
+
+- **React**      From authorList ... Hey authorActions, someone just clicked the "Delete Author" button. 
+- **Action**     I registered an action creator with the dispatcher in authorActions, so the dispatcher will notify all stores. DELETE_AUTHOR will be dispatched.
+- **Dispatcher** An author is being deleted. AuthorStore has registered a callback, this is called.
+- **Store**      Receives update from dispatcher, updateds data with the payload sent. Lodash is used to remove the author, then event is emitted.
+- **React**      New data from the store received in the changeListener wired up in authorPage, UI is updated to reflect this.
 
 
 
