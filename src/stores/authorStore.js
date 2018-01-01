@@ -27,6 +27,7 @@ var AuthorStore = assign({}, EventEmitter.prototype, {
     },
 
     getAuthorById: function(id) {
+        // find is a lodash function
         return _.find(_authors, {id: id});
     }
 });

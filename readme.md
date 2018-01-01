@@ -462,5 +462,16 @@ The **public API** of the store are the three functions above. Only the AuthorSt
 
 To getAuthors from the store a getAllAuthors function is exposed. The store is called to get authors instead of the API in the author pages.
 
-Stopped at "Stores: Initialization" 0:00 of 3:55
+### Stores: Initialization
+
+Initialization will now occur in main.js
+
+Create an initialization actions file that will be used to bootstrap the application.
+
+The author store needs to know when initialActions is called when the app starts.
+
+To do this register the action in the Dispatcher register section of the authorStore.
+
+
+
 

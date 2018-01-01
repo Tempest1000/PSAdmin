@@ -5,5 +5,8 @@ var keyMirror = require('react/lib/keyMirror');
 
 // like a enum in Java and C#
 module.exports = keyMirror({
-    CREATE_AUTHOR: null
+    INITIALIZE: null,
+    CREATE_AUTHOR: null,
+    UPDATE_AUTHOR: null,
+    DELETE_AUTHOR: null
 });
