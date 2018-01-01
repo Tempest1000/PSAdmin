@@ -458,9 +458,23 @@ A switch statement is used to do this.
 
 All of the other Flux implementations build on the principals of the action/dispatcher/store concept.
 
-The **public API** of the store are the three functions above. Only the AuthorStore is exported, so no one can mess with the private author data in the class in a private author array. 
+The **public API** of the store are the three functions above. 
+
+The actual author data in the store is **private**. At the top of the file a private author array is declared.
+
+Only the AuthorStore is exported, so no one can mess with the private author data in the class in a private author array.
+
+Altering the author data must be done through the methods exposed in the AuthorStore API. 
 
 To getAuthors from the store a getAllAuthors function is exposed. The store is called to get authors instead of the API in the author pages.
+
+When the private data is altered the change is then  emitted with a call to emitChange. Any classes that have used AuthorStore.addChangeListener will receive the changes.
+
+One such place is the AuthorPage which is the View Controller that sits on top of the AuthorList. Here the list of authors is maintained in state, and passed to the author list as props.
+
+When the underlying author data changes in the AuthorStore the change is emitted, and is captured in the addChangeListener that is wired up in the AuthorPage and the _onChange method is called.
+
+In the _onChange method, set state is called and the author data in state is refreshed with the current data from the AuthorStore. Additional info on this is in the listeners section below. 
 
 ### Stores: Initialization
 
@@ -471,6 +485,16 @@ Create an initialization actions file that will be used to bootstrap the applica
 The author store needs to know when initialActions is called when the app starts.
 
 To do this register the action in the Dispatcher register section of the authorStore.
+
+### Stores: Listeners
+
+When a store changes React components need to be notified, for example the author list needs to know that it needs to reload when and author is deleted.
+
+To do this add a _onChange method to the authorPage which sets to the author state to the getAllAuthors method of the AuthorStore, then call this method whenever the list is altered.
+
+In addition to this on componentWillMount add the AuthorStore addChangeListener, this points to _onChange.
+
+
 
 
 

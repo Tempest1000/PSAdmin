@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fd0f4b64-2d3e-4bbb-8ae5-cc94bf992940" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/authorActions.js" afterPath="$PROJECT_DIR$/src/actions/authorActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/authors/authorList.js" afterPath="$PROJECT_DIR$/src/components/authors/authorList.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/authors/authorPage.js" afterPath="$PROJECT_DIR$/src/components/authors/authorPage.js" />
     </list>
     <list id="a006b51a-69cd-43e7-ad57-c1e4742c1129" name="NoCommit" comment="NoCommit">
       <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/lodash.assignwith/LICENSE" afterPath="" />
@@ -211,23 +213,21 @@
       <file leaf-file-name="authorPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/authors/authorPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1514765644204" expanded="true" signature="653:733" ph="&lt;div/&gt;" />
+                <marker date="1514834962997" expanded="true" signature="1007:1087" ph="&lt;div/&gt;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="appDispatcher.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dispatcher/appDispatcher.js">
+      <file leaf-file-name="authorList.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/authors/authorList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="15" column="34" lean-forward="false" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="140">
+              <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -252,43 +252,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authorActions.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="authorActions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/actions/authorActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="315">
+              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="345">
-                <caret line="474" column="0" lean-forward="true" selection-start-line="474" selection-start-column="0" selection-end-line="474" selection-end-column="0" />
+              <first_editor relative-caret-position="140">
+                <caret line="476" column="189" lean-forward="false" selection-start-line="476" selection-start-column="189" selection-end-line="476" selection-end-column="189" />
                 <folding>
-                  <marker date="1514832670036" expanded="true" signature="2116:2624" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="2131:2610" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="2206:2326" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="2237:2316" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="2389:2604" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="2439:2594" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="2521:2580" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="3604:3699" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="3621:3692" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="4541:4728" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="5542:5710" ph="&lt;Input/&gt;" />
-                  <marker date="1514832670036" expanded="true" signature="6197:6328" ph="&lt;AuthorForm/&gt;" />
-                  <marker date="1514832670036" expanded="true" signature="6950:7316" ph="{&quot;devBaseUrl&quot;: 'http://localhost'...}" />
-                  <marker date="1514832670036" expanded="true" signature="7015:7316" ph="{&quot;html&quot;: './src/*.html'...}" />
-                  <marker date="1514832670036" expanded="true" signature="7123:7315" ph="[...]" />
-                  <marker date="1514832670036" expanded="true" signature="8117:8244" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="8175:8242" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="8212:8236" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="11463:11558" ph="{...}" />
-                  <marker date="1514832670036" expanded="true" signature="11496:11556" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="2116:2624" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="2131:2610" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="2206:2326" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="2237:2316" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="2389:2604" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="2439:2594" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="2521:2580" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="3604:3699" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="3621:3692" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="4541:4728" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="5542:5710" ph="&lt;Input/&gt;" />
+                  <marker date="1514838077763" expanded="true" signature="6197:6328" ph="&lt;AuthorForm/&gt;" />
+                  <marker date="1514838077763" expanded="true" signature="6950:7316" ph="{&quot;devBaseUrl&quot;: 'http://localhost'...}" />
+                  <marker date="1514838077763" expanded="true" signature="7015:7316" ph="{&quot;html&quot;: './src/*.html'...}" />
+                  <marker date="1514838077763" expanded="true" signature="7123:7315" ph="[...]" />
+                  <marker date="1514838077763" expanded="true" signature="8117:8244" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="8175:8242" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="8212:8236" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="11463:11558" ph="{...}" />
+                  <marker date="1514838077763" expanded="true" signature="11496:11556" ph="{...}" />
                 </folding>
               </first_editor>
               <second_editor />
@@ -358,6 +358,9 @@
       <find>route</find>
       <find>AuthorApi</find>
       <find>updateAuthor</find>
+      <find>d</find>
+      <find>deleteAuthor</find>
+      <find>private</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -387,20 +390,20 @@
         <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/src/api/authorData.js" />
         <option value="$PROJECT_DIR$/src/api/authorAPI.js" />
-        <option value="$PROJECT_DIR$/src/components/authors/authorList.js" />
         <option value="$PROJECT_DIR$/src/components/app.js" />
         <option value="$PROJECT_DIR$/src/components/common/header.js" />
         <option value="$PROJECT_DIR$/src/components/homePage.js" />
         <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/dispatcher/appDispatcher.js" />
-        <option value="$PROJECT_DIR$/src/components/authors/authorPage.js" />
         <option value="$PROJECT_DIR$/src/actions/initializeActions.js" />
         <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/src/stores/authorStore.js" />
         <option value="$PROJECT_DIR$/src/constants/actionTypes.js" />
         <option value="$PROJECT_DIR$/src/components/authors/manageAuthorPage.js" />
         <option value="$PROJECT_DIR$/src/actions/authorActions.js" />
+        <option value="$PROJECT_DIR$/src/components/authors/authorPage.js" />
+        <option value="$PROJECT_DIR$/src/components/authors/authorList.js" />
+        <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
   </component>
@@ -420,10 +423,9 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1047" />
-    <option name="y" value="60" />
-    <option name="width" value="772" />
-    <option name="height" value="1020" />
+    <option name="y" value="-4" />
+    <option name="width" value="1920" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -1131,7 +1133,7 @@
       <workItem from="1514417847462" duration="1122000" />
       <workItem from="1514759565231" duration="1745000" />
       <workItem from="1514764426221" duration="1329000" />
-      <workItem from="1514831453285" duration="2908000" />
+      <workItem from="1514831453285" duration="5303000" />
     </task>
     <task id="LOCAL-00001" summary="Add css concat, bootstrap, and lint.">
       <created>1495747406373</created>
@@ -1245,11 +1247,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514834422380</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Adding missing module exports line">
+      <created>1514834512612</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1514834512612</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56655000" />
+    <option name="totallyTimeSpent" value="59050000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1261,7 +1270,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1047" y="60" width="772" height="1020" extended-state="0" />
+    <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1275,7 +1284,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19832985" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.393736" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36743215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30486685" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1343,7 +1352,8 @@
     <MESSAGE value="App done without Flux." />
     <MESSAGE value="Created first action" />
     <MESSAGE value="Initialization and update author" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialization and update author" />
+    <MESSAGE value="Adding missing module exports line" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding missing module exports line" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1354,13 +1364,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1587,13 +1590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/authors/authorList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1641,17 +1637,7 @@
         <state relative-caret-position="80">
           <caret line="15" column="34" lean-forward="false" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/authors/authorPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-          <folding>
-            <marker date="1514765644204" expanded="true" signature="653:733" ph="&lt;div/&gt;" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1669,38 +1655,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="345">
-            <caret line="474" column="0" lean-forward="true" selection-start-line="474" selection-start-column="0" selection-end-line="474" selection-end-column="0" />
-            <folding>
-              <marker date="1514832670036" expanded="true" signature="2116:2624" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="2131:2610" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="2206:2326" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="2237:2316" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="2389:2604" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="2439:2594" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="2521:2580" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="3604:3699" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="3621:3692" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="4541:4728" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="5542:5710" ph="&lt;Input/&gt;" />
-              <marker date="1514832670036" expanded="true" signature="6197:6328" ph="&lt;AuthorForm/&gt;" />
-              <marker date="1514832670036" expanded="true" signature="6950:7316" ph="{&quot;devBaseUrl&quot;: 'http://localhost'...}" />
-              <marker date="1514832670036" expanded="true" signature="7015:7316" ph="{&quot;html&quot;: './src/*.html'...}" />
-              <marker date="1514832670036" expanded="true" signature="7123:7315" ph="[...]" />
-              <marker date="1514832670036" expanded="true" signature="8117:8244" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="8175:8242" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="8212:8236" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="11463:11558" ph="{...}" />
-              <marker date="1514832670036" expanded="true" signature="11496:11556" ph="{...}" />
-            </folding>
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -1736,11 +1690,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/readme.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/authorActions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="315">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/authors/authorList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/authors/authorPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1514834962997" expanded="true" signature="1007:1087" ph="&lt;div/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="140">
+            <caret line="476" column="189" lean-forward="false" selection-start-line="476" selection-start-column="189" selection-end-line="476" selection-end-column="189" />
+            <folding>
+              <marker date="1514838077763" expanded="true" signature="2116:2624" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="2131:2610" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="2206:2326" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="2237:2316" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="2389:2604" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="2439:2594" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="2521:2580" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="3604:3699" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="3621:3692" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="4541:4728" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="5542:5710" ph="&lt;Input/&gt;" />
+              <marker date="1514838077763" expanded="true" signature="6197:6328" ph="&lt;AuthorForm/&gt;" />
+              <marker date="1514838077763" expanded="true" signature="6950:7316" ph="{&quot;devBaseUrl&quot;: 'http://localhost'...}" />
+              <marker date="1514838077763" expanded="true" signature="7015:7316" ph="{&quot;html&quot;: './src/*.html'...}" />
+              <marker date="1514838077763" expanded="true" signature="7123:7315" ph="[...]" />
+              <marker date="1514838077763" expanded="true" signature="8117:8244" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="8175:8242" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="8212:8236" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="11463:11558" ph="{...}" />
+              <marker date="1514838077763" expanded="true" signature="11496:11556" ph="{...}" />
+            </folding>
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
