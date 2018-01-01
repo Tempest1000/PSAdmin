@@ -12,7 +12,7 @@ var About = React.createClass({
             }
         },
         willTransitionFrom: function(transition, component) {
-            if (!confirm('Are you sure you want to leave a page that is thsi exciting?')) {
+            if (!confirm('Are you sure you want to leave a page that is this exciting?')) {
                 transition.about();
             }
         }
